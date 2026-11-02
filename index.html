@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zama OG → $FUNGO Checker</title>
+<meta name="description" content="Paste any wallet. See how many Zama OG NFTs it holds and how much $FUNGO they're worth under FungoLabs' published airdrop rule. Read-only, no wallet connect.">
+<meta property="og:title" content="Zama OG → $FUNGO Checker">
+<meta property="og:description" content="How many Zama OG NFTs do you hold, and how much $FUNGO is under them? 140,112 $FUNGO per NFT.">
+<meta property="og:image" content="assets/zama-og.png">
+<meta name="theme-color" content="#FFD208">
+<link rel="icon" href="assets/zama-og.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="top">
+  <div class="brand"><span class="sq">Z</span><span>OG&nbsp;→&nbsp;$FUNGO</span></div>
+  <span class="pill"><span class="dot"></span>Read-only · Ethereum</span>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero-text">
+      <p class="eyebrow">Zama OG NFT holders · $FUNGO airdrop</p>
+      <h1>How much <mark>$FUNGO</mark> is under your Zama OG?</h1>
+      <p class="lede">Paste any wallet or ENS. We read the Zama OG contract live on Ethereum and apply the rule FungoLabs published: <b>every Zama OG NFT gets the same share</b>.</p>
+
+      <form id="form" class="checker" autocomplete="off">
+        <input id="addr" name="addr" spellcheck="false" placeholder="0x… or name.eth" aria-label="Wallet address or ENS name">
+        <button id="go" type="submit"><span>Check</span></button>
+      </form>
+      <p class="safe">🔒 No wallet connect. No signatures. Just paste an address.</p>
+    </div>
+    <div class="hero-art">
+      <img src="assets/zama-og.png" alt="Zama OG NFT" width="400" height="400">
+      <div class="tag">140,112<small>$FUNGO / NFT</small></div>
+    </div>
+  </section>
+
+  <section id="result" class="result" hidden aria-live="polite"></section>
+
+  <section class="stats">
+    <div class="stat"><span class="k">Pool for Zama OG</span><span class="v">700M <small>$FUNGO</small></span><span class="s">7% of 10B supply</span></div>
+    <div class="stat"><span class="k">Zama OG NFTs counted</span><span class="v">4,996</span><span class="s">per FungoLabs</span></div>
+    <div class="stat hi"><span class="k">Each NFT gets</span><span class="v">140,112 <small>$FUNGO</small></span><span class="s">same for every NFT</span></div>
+    <div class="stat"><span class="k">Claim window</span><span class="v">7 days</span><span class="s">unclaimed gets burned</span></div>
+  </section>
+
+  <section class="how">
+    <h2>How it works</h2>
+    <ol>
+      <li><b>TGE block snapshot.</b> FungoLabs will announce the TGE block in advance. Whoever holds a Zama OG NFT at that block gets its share.</li>
+      <li><b>Claim within 7 days.</b> Claims open within hours of TGE. Take it as $FUNGO, or sealed as cFUNGO for privacy. Anything unclaimed after 7 days is burned.</li>
+      <li><b>No Zama OG yet?</b> You can only get this share by holding one at the snapshot. <a href="https://opensea.io/collection/zama-og-nft-official" target="_blank" rel="noopener">Zama OG on OpenSea ↗</a></li>
+    </ol>
+  </section>
+
+  <section class="sources">
+    <h2>Sources</h2>
+    <ul>
+      <li><a href="https://x.com/FungoLabs/status/2117217770374848865" target="_blank" rel="noopener">FungoLabs: 7% (700M $FUNGO) to Zama OG holders ↗</a></li>
+      <li><a href="https://fungolabs.org/launchpad/tokenomics" target="_blank" rel="noopener">FungoLabs tokenomics: 140,112 $FUNGO per Zama OG NFT ↗</a></li>
+      <li><a href="https://x.com/FungoLabs/status/2117217774665650426" target="_blank" rel="noopener">FungoLabs: claim rules (7 days, burn) ↗</a></li>
+      <li><a href="https://www.zama.org/post/zama-og-nft-claim-portal-is-live" target="_blank" rel="noopener">Zama: official Zama OG contract address ↗</a></li>
+      <li><a href="https://etherscan.io/token/0xb3f2ddaed136cf10d5b228ee2eff29b71c7535fc" target="_blank" rel="noopener">Contract 0xb3f2…35fc on Etherscan ↗</a></li>
+    </ul>
+  </section>
+
+  <section class="disclaimer">
+    <p><b>Unofficial community tool.</b> Not affiliated with Zama or FungoLabs. The $FUNGO figure uses FungoLabs' published 140,112 per NFT; the final amount is set by who holds each NFT at the TGE block and by FungoLabs' claim contract. This site never asks you to connect a wallet or sign anything. <b>If any site asks for your seed phrase or a signature to "check", it's a scam.</b> Claim only through FungoLabs' official links.</p>
+  </section>
+</main>
+
+<footer>
+  <span>Data: live Ethereum RPC · contract <a href="https://etherscan.io/token/0xb3f2ddaed136cf10d5b228ee2eff29b71c7535fc" target="_blank" rel="noopener"><code>0xb3f2…35fc</code></a></span>
+  <span>Open source · <a href="https://github.com/naimuli74/zama-fungo-checker" target="_blank" rel="noopener">GitHub</a></span>
+</footer>
+
+<script src="config.js"></script>
+<script src="keccak.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
