@@ -114,3 +114,5 @@ footer{max-width:1080px;margin:0 auto;padding:18px 20px 36px;display:flex;flex-w
   .result{padding:18px}
 }
 .note code,.r-addr{word-break:break-all;overflow-wrap:anywhere}
+
+.madeby b{background:#FFD208;color:#111;padding:1px 6px;border-radius:4px}
