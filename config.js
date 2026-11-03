@@ -7,6 +7,9 @@ window.CFG = {
   pool: 700000000,         // 7% of 10B FUNGO — FungoLabs thread 3/6
   totalSupply: 10000000000,
   claimDays: 7,
+  // $FUNGO has no launch price yet (no TGE, no presale). These are assumed fully diluted valuations for the estimate only.
+  fdvScenarios: [5e6, 10e6, 25e6, 50e6, 100e6],
+  fdvDefault: 10e6,
   links: {
     opensea: 'https://opensea.io/collection/zama-og-nft-official',
     etherscan: 'https://etherscan.io/token/0xb3f2ddaed136cf10d5b228ee2eff29b71c7535fc',

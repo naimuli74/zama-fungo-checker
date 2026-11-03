@@ -84,6 +84,12 @@
           <div class="v">${fmt(tokens)} <small>$FUNGO</small></div>
           <div class="calc">${fmt(n)} × ${fmt(C.perNft)} $FUNGO per NFT</div></div>
       </div>
+      <div class="est" id="est" data-tokens="${tokens}">
+        <div class="est-top"><span class="k">Estimated value</span><span class="est-v" id="estV"></span></div>
+        <div class="chips" id="chips">${C.fdvScenarios.map(f => `<button type="button" class="chip${f === C.fdvDefault ? ' on' : ''}" data-fdv="${f}">${usdShort(f)} FDV</button>`).join('')}</div>
+        <div class="calc" id="estCalc"></div>
+        <p class="est-warn">⚠️ $FUNGO has no market price yet. This is a guess based on an assumed launch valuation (FDV), not a promise. Pick a scenario.</p>
+      </div>
       <p class="note">Based on FungoLabs' published rule: every Zama OG NFT receives the same ${fmt(C.perNft)} $FUNGO. The final amount goes to whoever holds each NFT at the <b>TGE block</b> (announced in advance). Keep your NFT in this wallet until then, and claim within ${C.claimDays} days or it's burned.</p>
       <div class="actions">
         <a class="btn primary" href="${C.links.tokenomics}" target="_blank" rel="noopener">FungoLabs tokenomics ↗</a>
@@ -91,6 +97,7 @@
         <button class="btn" id="share" type="button">Copy share link</button>
       </div>`);
     hookShare(addr);
+    hookEst();
   }
 
   function renderEmpty(addr, label) {
@@ -103,7 +110,7 @@
         <img src="assets/zama-og.png" alt="">
         <div>
           <h3>No Zama OG NFT in this wallet</h3>
-          <p>This wallet gets <b>0 $FUNGO</b> from the Zama OG airdrop right now. To qualify, buy a Zama OG NFT first and hold it at the TGE block. Each one carries <b>${fmt(C.perNft)} $FUNGO</b>.</p>
+          <p>This wallet gets <b>0 $FUNGO</b> from the Zama OG airdrop right now. To qualify, buy a Zama OG NFT first and hold it at the TGE block. Each one carries <b>${fmt(C.perNft)} $FUNGO</b> (≈ ${usd(C.perNft * C.fdvDefault / C.totalSupply)} if $FUNGO launches at a ${usdShort(C.fdvDefault)} valuation, which is only a guess).</p>
         </div>
       </div>
       <div class="actions">
@@ -111,6 +118,22 @@
         <a class="btn" href="${C.links.etherscan}" target="_blank" rel="noopener">Verify contract on Etherscan ↗</a>
       </div>
       <p class="note">⚠️ Check that the collection contract is <code>${C.contract}</code> before you buy. Fake “Zama OG” collections exist. Prices move; this is not financial advice.</p>`);
+  }
+
+
+  function usdShort(v) { return v >= 1e9 ? '$' + v / 1e9 + 'B' : v >= 1e6 ? '$' + v / 1e6 + 'M' : '$' + fmt(v); }
+  function usd(v) { return '$' + v.toLocaleString('en-US', { minimumFractionDigits: v < 100 ? 2 : 0, maximumFractionDigits: v < 100 ? 2 : 0 }); }
+  function hookEst() {
+    const box = document.getElementById('est'); if (!box) return;
+    const tokens = Number(box.dataset.tokens);
+    const set = fdv => {
+      const price = fdv / C.totalSupply;
+      document.getElementById('estV').textContent = '≈ ' + usd(tokens * price);
+      document.getElementById('estCalc').textContent = fmt(tokens) + ' × $' + price.toPrecision(2) + ' per $FUNGO (at ' + usdShort(fdv) + ' FDV)';
+      box.querySelectorAll('.chip').forEach(c => c.classList.toggle('on', Number(c.dataset.fdv) === fdv));
+    };
+    box.querySelectorAll('.chip').forEach(c => c.onclick = () => set(Number(c.dataset.fdv)));
+    set(C.fdvDefault);
   }
 
   function hookShare(addr) {
